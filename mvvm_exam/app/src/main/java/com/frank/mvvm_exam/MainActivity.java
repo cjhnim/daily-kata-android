@@ -2,21 +2,21 @@ package com.frank.mvvm_exam;
 
 import android.os.Bundle;
 
+import com.frank.mvvm_exam.databinding.ContentMainBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.databinding.Observable;
+import androidx.databinding.DataBindingUtil;
 
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
     MainViewModel viewModel;
-    TextView tv;
+    ContentMainBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
-        viewModel = new MainViewModel();
-        tv = findViewById(R.id.tv);
-        viewModel.name.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable sender, int propertyId) {
-                tv.setText((String)viewModel.name.get());
-            }
-        });
-        tv.setOnClickListener(this);
+        viewModel = new MainViewModel(new Calculator());
+        mBinding = DataBindingUtil.setContentView(this, R.layout.content_main);
+        mBinding.setVm(viewModel);
     }
 
     @Override
@@ -65,10 +59,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onClick(View view) {
-        viewModel.nameClick();
     }
 }
