@@ -24,29 +24,44 @@
             android:layout_margin="50dp"
             android:orientation="vertical">
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="number1"
+                app:error="@{vm.number1Error}"
+                app:errorEnabled="true">
             <EditText
                 android:id="@+id/number1"
                 android:text="@={vm.number1}"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="100dp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="number2"
+                app:error="@{vm.number2Error}"
+                app:errorEnabled="true">
             <EditText
                 android:id="@+id/number2"
                 android:text="@={vm.number2}"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="100dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <Button
                 android:id="@+id/calc_button"
                 android:onClick="@{() -> vm.resultClick()}"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:text="calc" />
 
             <TextView
                 android:id="@+id/result"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="100dp"
                 android:text="@{vm.result}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
