@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">loginkata3</string>
+    <string name="username_password_empty_error">username and password are empty.</string>
+</resources>
